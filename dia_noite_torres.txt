@@ -1,0 +1,23 @@
+Sub separarMN()
+
+linha = 4
+linhaN = 2
+linhaM = 2
+
+Do While Not IsEmpty(Range("M" & linha))
+
+
+        If Cells(linha, 4) >= 6 And Cells(linha, 4) <= 18 Then
+            Sheets("dados").Range("A" & linha, "M" & linha).Copy Destination:=Sheets("M").Range("A" & linhaM)
+            linha = linha + 1
+            linhaM = linhaM + 1
+        Else
+            Sheets("dados").Range("A" & linha, "M" & linha).Copy Destination:=Sheets("N").Range("A" & linhaN)
+            linha = linha + 1
+            linhaN = linhaN + 1
+        End If
+
+    
+Loop
+
+End Sub
