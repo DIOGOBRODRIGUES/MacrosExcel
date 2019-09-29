@@ -1,0 +1,59 @@
+Sub Organizar()
+    linhaLegenda = 10
+    colunaLegenda = 2
+    linhaDado = 12
+    colunaDado = 2
+    Aba = "horario"
+    linhaNova = 2
+    ColunaNova = 3
+    linhaBase = 2
+    
+    Do While Not IsEmpty(Range("A" & linhaDado))
+     
+    Do While Not IsEmpty(Cells(linhaLegenda, colunaLegenda))
+        
+        Do While Cells(linhaLegenda, colunaLegenda) = Cells(linhaLegenda, colunaLegenda + 1) And Not IsEmpty(Cells(linhaLegenda, colunaLegenda + 1))
+            
+            If colunaDado < 26 Then
+             
+             ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova - 1).Value = Cells(11, colunaDado)
+             ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova - 2).Value = Cells(linhaDado, 1)
+            End If
+            
+            
+            ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova).Value = Cells(linhaDado, colunaDado)
+            linhaNova = linhaNova + 1
+            colunaLegenda = colunaLegenda + 1
+            colunaDado = colunaDado + 1
+        Loop
+        
+         If colunaDado < 26 Then
+             
+             ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova - 1).Value = Cells(11, colunaDado)
+             ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova - 2).Value = Cells(linhaDado, 1)
+            End If
+         ThisWorkbook.Sheets(Aba).Cells(linhaNova, ColunaNova).Value = Cells(linhaDado, colunaDado)
+         If IsEmpty(Cells(linhaDado, colunaDado + 1)) Then
+            linhaBase = linhaNova + 1
+         
+         Else
+            linhaNova = linhaBase
+        
+        End If
+        
+         ColunaNova = ColunaNova + 1
+         colunaLegenda = colunaLegenda + 1
+         colunaDado = colunaDado + 1
+        
+        
+    
+    Loop
+    colunaLegenda = 2
+    linhaDado = linhaDado + 1
+    colunaDado = 2
+    ColunaNova = 3
+    'linha = linha + 1
+     linhaNova = linhaBase
+    Loop
+    
+End Sub
